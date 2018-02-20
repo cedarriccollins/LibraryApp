@@ -33,13 +33,6 @@ public class MyLibraryJDBCDriver {
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        String sqlInsert = "INSERT INTO Book ( isbn, title, genre)"
-                + " VALUES (?, ?, ?)";
-        jdbcTemplate.update(sqlInsert,  "1234567", "Bible", "Holy");
-
-        String sqlUpdate = "UPDATE Book set title=? where genre=?";
-        jdbcTemplate.update(sqlUpdate, "KJV Bible", "Holy");
-
         String sqlSelect = "SELECT * FROM Book";
         List<Book> listBook = jdbcTemplate.query(sqlSelect, new RowMapper<Book>() {
 
@@ -58,9 +51,7 @@ public class MyLibraryJDBCDriver {
         for (Book aBook : listBook) {
             System.out.println(aBook);
         }
-
-        String sqlDelete = "DELETE FROM Book where title=?";
-        jdbcTemplate.update(sqlDelete, "Bible");
+       
     }
 
 }
